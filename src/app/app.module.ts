@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 
 import {HeaderModule} from './common/header';
 import {ProductionModule} from './pages/production';
-import {SharedModule} from './shared/shared.module';
+import {ProductionService} from './pages/production/production.service';
 
 
 @NgModule({
@@ -20,6 +20,7 @@ import {SharedModule} from './shared/shared.module';
     ProductionModule
   ],
   providers: [
+    ProductionService
   ],
   bootstrap: [AppComponent]
 })
