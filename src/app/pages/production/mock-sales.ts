@@ -1,4 +1,3 @@
-import { SalesList } from './sales';
 
 export const sales = [
   {date: new Date('1/1/17').getTime(), type: {id: 0, name: 'Production'}},
