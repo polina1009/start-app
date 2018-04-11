@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { sales } from './mock-sales';
-import { SaleInterface } from './sale.interface';
+import {SaleByMonthInterface, SaleInterface} from './sale.interface';
 import { SaleClass } from './sale.class';
 import {forEach} from '@angular/router/src/utils/collection';
 
@@ -26,7 +26,18 @@ export class ProductionService {
 
     // todo prepare sales list
   }
-  getDateSales(): any {
+
+  getSalesByMonth(from: number, to: number): SaleByMonthInterface[] {
+    const filteredSales = this.salesList.filter((sale) => sale.date <= to && sale.date >= from);
+    return filteredSales.map((sale): SaleByMonthInterface => {
+      return {
+        month: new Date(sale.date).toLocaleDateString('en-us', { month: 'short' }),
+        amount: sale.amount
+      };
+    });
+  }
+
+  getDateSales(): any {  // Remake method
     const numbers = this.salesList.filter(item => 'number' === typeof item);
     return numbers;
     // console.log(numbers);
