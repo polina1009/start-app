@@ -1,35 +1,49 @@
 import { Injectable } from '@angular/core';
 import { sales } from './mock-sales';
-// import {forEach} from '@angular/router/src/utils/collection';
+import {SaleByMonthInterface, SaleInterface} from './sale.interface';
+import { SaleClass } from './sale.class';
 
 
 @Injectable()
 export class ProductionService {
+
   // todo private sales list
-  private salesInt = [];
+  private salesList: SaleInterface[]; // Just implemented interface without default state
+
+  private static getPreparedSales(salesList): SaleInterface[] { // real return type description
+    return salesList.map((sale): SaleInterface => new SaleClass(sale));
+  }
+
   constructor() {
-    sales.forEach(el => {
-      this.salesInt.push(el.date);
-      this.salesInt.push(el.type);
-    });
-    console.log(this.getByMonth(11));
+
+    this.salesList = []; // Setting default state
+    this.setSales();
 
     // todo prepare sales list
   }
-  getDateSales(): any {
-    const numbers = this.salesInt.filter(item => 'number' === typeof item);
-    return numbers;
-    // console.log(numbers);
-  }
-  getTypeSales(): any {
-    const objects = this.salesInt.filter(item => 'object' === typeof item);
-    return objects;
-    // console.log(objects);
+
+  getSalesByMonth(from: number, to: number): SaleByMonthInterface[] {
+    const filteredSales = this.salesList.filter((sale) => sale.date <= to && sale.date >= from);
+    return filteredSales.map((sale): SaleByMonthInterface => {
+      return {
+        month: new Date(sale.date).toLocaleDateString('en-us', { month: 'short' }),
+        amount: sale.amount
+      };
+    });
   }
 
-  getByMonth(from: number): object {
-    const lastDate = new Date(from).getTime();
-    const currentDate = new Date().getTime();
-    return {from: lastDate, to: currentDate};
+  getDateSales(): any {  // Remake method
+    const numbers = this.salesList.filter(item => 'number' === typeof item);
+    return numbers;
+  }
+  getTypeSales(): any {
+    const objects = this.salesList.filter(item => 'object' === typeof item);
+    return objects;
+  }
+
+  private setSales(): void {
+    this.salesList = ProductionService.getPreparedSales(sales);
+
+    console.log(this.salesList);
   }
 }
