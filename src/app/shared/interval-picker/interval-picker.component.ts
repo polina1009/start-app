@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductionService } from '../../pages/production/production.service';
+// import {sales} from '../../pages/production/mock-sales';
 
 @Component({
   selector: 'app-interval-picker',
@@ -11,10 +12,9 @@ import { ProductionService } from '../../pages/production/production.service';
 export class IntervalPickerComponent implements OnInit {
   constructor(private prodService: ProductionService) {
   }
-  getDate(): void {
+  getDate(): any {
      const sales = this.prodService.getDateSales();
      console.log('$$$$$$',  sales);
-     return sales;
   }
   ngOnInit() {
     this.getDate();
