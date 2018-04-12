@@ -5,11 +5,16 @@ export interface SaleInterface {
 }
 
 export interface SaleTypeInterface {
-  id: string;
+  id: number;
   name: string;
 }
 
 export interface SaleByMonthInterface {
   month: string;
   amount: number;
+}
+
+export interface SumSaleInterface {
+  sales: SaleInterface[];
+  totalAmount: number;
 }
