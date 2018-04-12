@@ -3,18 +3,14 @@ import { NgModule } from '@angular/core';
 
 
 import { ProductionComponent } from './production.component';
-import { ContactLensesComponent, FramesComponent, OtherComponent, RxLensesComponent, ServicesComponent, ProductionChartComponent } from './components';
+import { FramesComponent, ProductionChartComponent } from './components';
 import {SharedModule} from '../../shared/shared.module';
 import {ProductionService} from './production.service';
 
 @NgModule({
   declarations: [
     ProductionComponent,
-    ContactLensesComponent,
     FramesComponent,
-    OtherComponent,
-    RxLensesComponent,
-    ServicesComponent,
     ProductionChartComponent
   ],
   imports: [

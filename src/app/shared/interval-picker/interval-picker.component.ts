@@ -12,12 +12,12 @@ import { ProductionService } from '../../pages/production/production.service';
 export class IntervalPickerComponent implements OnInit {
   constructor(private prodService: ProductionService) {
   }
-  getDate(): any {
-     const sales = this.prodService.getDateSales();
-     console.log('$$$$$$',  sales);
-  }
+  // getDate(): any {
+  //    const sales = this.prodService.getDateSales();
+  //    console.log('$$$$$$',  sales);
+  // }
   ngOnInit() {
-    this.getDate();
+    // this.getDate();
   }
 
 }
