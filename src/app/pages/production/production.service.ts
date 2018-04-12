@@ -23,17 +23,16 @@ export class ProductionService {
     this.setSales();
     this.filterSales(1483221600000, 1483221600000);
 
-    // todo prepare sales list
   }
-  // getSalesByMonth(from: number, to: number): SaleByMonthInterface[] {
-  //   const filteredSales = this.salesList.filter((sale) => sale.date <= to && sale.date >= from);
-  //   return this.filteredSales.map((sale): SaleByMonthInterface => {
-  //     return {
-  //       month: new Date(sale.date).toLocaleDateString('en-us', { month: 'short' }),
-  //       amount: sale.amount
-  //     };
-  //   });
-  // }
+  getSalesByMonth(from: number, to: number): SaleByMonthInterface[] {
+    const filteredSales = this.salesList.filter((sale) => sale.date <= to && sale.date >= from);
+    return filteredSales.map((sale): SaleByMonthInterface => {
+      return {
+        month: new Date(sale.date).toLocaleDateString('en-us', { month: 'short' }),
+        amount: sale.amount
+      };
+    });
+  }
 
   getSalesByType(type: number): SumSaleInterface {
     let total = 0;

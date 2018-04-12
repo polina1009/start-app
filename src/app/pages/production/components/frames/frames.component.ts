@@ -18,8 +18,8 @@ export class FramesComponent implements OnInit {
     this.sales = [];
   }
 
-  public setClick() {
-    console.log('click!!');
+  public setClick(name: string) {
+    console.log(name);
   }
 
   ngOnInit() {
