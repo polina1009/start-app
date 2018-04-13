@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductionService } from '../../pages/production/production.service';
+import { IntervalDateInterface } from '../../pages/production/sale.interface';
 
 const periodMap = {
   day: {
@@ -41,6 +42,7 @@ const periodMap = {
 
 export class IntervalPickerComponent implements OnInit {
   constructor(private prodService: ProductionService) {
+    // this.prodService.filterSales();
   }
 
   ngOnInit() {
