@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, OnChanges} from '@angular/core';
 import {ProductionService } from '../../production.service';
 import {SaleInterface, SaleTypeInterface, SumSaleInterface} from '../../sale.interface';
 
@@ -12,7 +12,9 @@ export class FramesComponent implements OnInit {
   @Input()
   public type: SaleTypeInterface;
 
-  public sales: SaleInterface[];
+  public amount: number ;
+
+  public sales: SumSaleInterface[];
 
   constructor(private prodService: ProductionService) {
     this.sales = [];
@@ -23,11 +25,12 @@ export class FramesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getType();
+    this.getSales();
   }
 
-  private getType(): void {
+  private getSales(): void {
     const sales = this.prodService.getSalesByType(this.type.id);
+    // this.amount.amount = sales.totalAmount;
     console.log(sales);
   }
 

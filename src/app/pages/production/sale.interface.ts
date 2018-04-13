@@ -18,9 +18,3 @@ export interface SumSaleInterface {
   sales: SaleInterface[];
   totalAmount: number;
 }
-
-export interface SaleDataInterface {
-  type: number;
-  date: number;
-  amount: number;
-}
