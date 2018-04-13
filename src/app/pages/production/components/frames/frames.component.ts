@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ProductionService } from '../../production.service';
-import {SaleInterface, SaleTypeInterface} from '../../sale.interface';
+import {SaleInterface, SaleTypeInterface, SumSaleInterface} from '../../sale.interface';
 
 @Component({
   selector: 'app-frames',
@@ -23,10 +23,10 @@ export class FramesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getSales();
+    this.getType();
   }
 
-  private getSales(): void {
+  private getType(): void {
     const sales = this.prodService.getSalesByType(this.type.id);
     console.log(sales);
   }

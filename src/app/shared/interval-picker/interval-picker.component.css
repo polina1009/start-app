@@ -1,0 +1,22 @@
+.nav {
+  display: inline-block;
+  width: 100%;
+  border: 1px solid red;
+}
+
+.interval-list {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+
+.interval-list li {
+  display: inline-block;
+  list-style-type: none;
+  padding: 15px;
+  border: 1px solid gray;
+}
+
+.interval-list li a {
+  text-decoration: none;
+}

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { sales } from './mock-sales';
-import {SaleByMonthInterface, SaleInterface, SumSaleInterface} from './sale.interface';
+import {SaleByMonthInterface, SaleInterface, SumSaleInterface, SaleDataInterface} from './sale.interface';
 import { SaleClass } from './sale.class';
 
 
@@ -24,20 +24,21 @@ export class ProductionService {
     this.filterSales(1483221600000, 1483221600000);
 
   }
-  getSalesByMonth(from: number, to: number): SaleByMonthInterface[] {
-    const filteredSales = this.salesList.filter((sale) => sale.date <= to && sale.date >= from);
-    return filteredSales.map((sale): SaleByMonthInterface => {
-      return {
-        month: new Date(sale.date).toLocaleDateString('en-us', { month: 'short' }),
-        amount: sale.amount
-      };
-    });
-  }
+  // getSalesByMonth(from: number, to: number): SaleByMonthInterface[] {
+  //   const filteredSales = this.salesList.filter((sale) => sale.date <= to && sale.date >= from);
+  //   return filteredSales.map((sale): SaleByMonthInterface => {
+  //     return {
+  //       month: new Date(sale.date).toLocaleDateString('en-us', { month: 'short' }),
+  //       amount: sale.amount
+  //     };
+  //   });
+  // }
 
   getSalesByType(type: number): SumSaleInterface {
     let total = 0;
     const salesList = this.filteredSalesList.filter((el) => {
       total += el.amount;
+      console.log(total);
       return el.type.id === type;
     });
      return {

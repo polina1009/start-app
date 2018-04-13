@@ -5,7 +5,6 @@ import { NgModule } from '@angular/core';
 import { ProductionComponent } from './production.component';
 import { FramesComponent, ProductionChartComponent } from './components';
 import {SharedModule} from '../../shared/shared.module';
-import {ProductionService} from './production.service';
 
 @NgModule({
   declarations: [
@@ -21,7 +20,6 @@ import {ProductionService} from './production.service';
     ProductionComponent
   ],
   providers: [
-    ProductionService
   ],
 })
 export class ProductionModule { }
