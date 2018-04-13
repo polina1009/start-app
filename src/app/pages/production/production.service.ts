@@ -19,7 +19,6 @@ export class ProductionService {
     this.salesList = []; // Setting default state
     this.filteredSalesList = [];
     this.setSales();
-    // this.getSalesByMonth(1483394400000, 1485900000000);
 
   }
   // getSalesByMonth(): SaleByMonthInterface[] {
