@@ -37,7 +37,7 @@ const periodMap = {
   selector: 'app-interval-picker',
   templateUrl: './interval-picker.component.html',
   styleUrls: ['./interval-picker.component.css'],
-  providers: [ProductionService]
+  // providers: [ProductionService]
 })
 
 export class IntervalPickerComponent implements OnInit {
@@ -53,6 +53,8 @@ export class IntervalPickerComponent implements OnInit {
     const from = periodMap[perioKey].from;
     const to = periodMap[perioKey].to;
     this.prodService.filterSales( from, to);
+    // console.log('###########');
+    this.prodService.changeMessage('Hello Polina!!!!');
   }
 
 }

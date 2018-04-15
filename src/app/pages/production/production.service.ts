@@ -17,7 +17,7 @@ export class ProductionService {
   currentMessage = this.messageSource.asObservable();
 
 
-
+  private creationDatetime;
 
   private static getPreparedSales(salesList): SaleInterface[] { // real return type description
     return salesList.map((sale): SaleInterface => new SaleClass(sale));
@@ -28,9 +28,12 @@ export class ProductionService {
     this.filteredSalesList = [];
     this.setSales();
 
+    // to distinct services (if several exists) from each other
+    this.creationDatetime = new Date().getTime();
   }
 
   changeMessage(message: string) {
+    console.log(`creation time = ${this.creationDatetime}`);
     this.messageSource.next(message);
   }
 
