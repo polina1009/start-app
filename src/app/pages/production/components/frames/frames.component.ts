@@ -28,7 +28,10 @@ export class FramesComponent implements OnInit {
 
   ngOnInit() {
     this.getSales();
-    this.prodService.currentMessage.subscribe(message => this.message = message);
+    this.prodService.currentMessage.subscribe(message => {
+      this.message = message;
+      this.getSales();
+    });
   }
 
   newMessage() {
