@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ProductionService} from './production.service';
+import {SaleInterface, SumSaleInterface} from './sale.interface';
 // import { Sales } from './sales';
 
 @Component({
@@ -10,9 +11,12 @@ import {ProductionService} from './production.service';
 })
 export class ProductionComponent implements OnInit {
 
+  message: string;
+
   constructor(private prodService: ProductionService) {
   }
   ngOnInit() {
+    this.prodService.currentMessage.subscribe(message => this.message = message);
   }
 
 }

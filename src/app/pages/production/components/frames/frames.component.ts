@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, OnChanges} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {ProductionService } from '../../production.service';
 import {SaleInterface, SaleTypeInterface, SumSaleInterface} from '../../sale.interface';
 
@@ -11,13 +11,15 @@ import {SaleInterface, SaleTypeInterface, SumSaleInterface} from '../../sale.int
 export class FramesComponent implements OnInit {
   @Input()
   public type: SaleTypeInterface;
+  public amount: number;
 
-  public amount: number ;
+  message: string;
 
-  public sales: SumSaleInterface[];
+  public sales: SumSaleInterface;
 
   constructor(private prodService: ProductionService) {
-    this.sales = [];
+    this.amount = 0;
+    // this.sales = [];
   }
 
   public setClick(name: string) {
@@ -26,12 +28,16 @@ export class FramesComponent implements OnInit {
 
   ngOnInit() {
     this.getSales();
+    this.prodService.currentMessage.subscribe(message => this.message = message);
+  }
+
+  newMessage() {
+    this.prodService.changeMessage('Hello Polina!!!!');
   }
 
   private getSales(): void {
-    const sales = this.prodService.getSalesByType(this.type.id);
-    // this.amount.amount = sales.totalAmount;
-    console.log(sales);
+    this.sales = this.prodService.getSalesByType(this.type.id);
+    console.log('*******', this.sales);
   }
 
 }

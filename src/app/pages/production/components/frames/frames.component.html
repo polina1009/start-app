@@ -1,5 +1,7 @@
 <div class="big frames-cont">
   <h3>{{ type.name }}</h3>
-  <!--<p>{{amount.amount}}</p>-->
+  <h1>{{amount}} $</h1>
   <button class="btn" type="submit" (click)="setClick(type.name)">+</button>
+  <p>{{message}}</p>
+  <button (click)="newMessage()">New</button>
 </div>
