@@ -27,20 +27,21 @@ export class FramesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getSales();
-    this.prodService.currentMessage.subscribe(message => {
-      this.message = message;
-      this.getSales();
+    this.getSalesAndRender();
+    this.prodService.notificator.subscribe(message => {
+      // this.message = message;
+      this.getSalesAndRender();
     });
   }
 
   newMessage() {
-    this.prodService.changeMessage('Hello Polina!!!!');
+    // this.prodService.changeMessage('Hello!!!!');
   }
 
-  private getSales(): void {
+  private getSalesAndRender(): void {
     this.sales = this.prodService.getSalesByType(this.type.id);
-    console.log('*******', this.sales);
+    this.amount = this.sales.totalAmount;
+    // console.log('*******', this.sales);
   }
 
 }

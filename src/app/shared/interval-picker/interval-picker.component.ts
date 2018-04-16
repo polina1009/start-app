@@ -54,7 +54,7 @@ export class IntervalPickerComponent implements OnInit {
     const to = periodMap[perioKey].to;
     this.prodService.filterSales( from, to);
     // console.log('###########');
-    this.prodService.changeMessage('Hello Polina!!!!');
+    this.prodService.changeMessage('interval picker changed!');
   }
 
 }

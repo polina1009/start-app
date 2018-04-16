@@ -13,11 +13,10 @@ export class ProductionService {
 
   private filteredSalesList: SaleInterface[];
 
-  private messageSource = new BehaviorSubject<string>('default message');
-  currentMessage = this.messageSource.asObservable();
+  private _notificator = new BehaviorSubject<string>('interval picker changed!');
+  notificator = this._notificator.asObservable();
 
-
-  private creationDatetime;
+  // private creationDatetime;
 
   private static getPreparedSales(salesList): SaleInterface[] { // real return type description
     return salesList.map((sale): SaleInterface => new SaleClass(sale));
@@ -29,12 +28,12 @@ export class ProductionService {
     this.setSales();
 
     // to distinct services (if several exists) from each other
-    this.creationDatetime = new Date().getTime();
+    // this.creationDatetime = new Date().getTime();
   }
 
   changeMessage(message: string) {
-    console.log(`creation time = ${this.creationDatetime}`);
-    this.messageSource.next(message);
+    // console.log(`creation time = ${this.creationDatetime}`);
+    this._notificator.next(message);
   }
 
   // getSalesByMonth(): SaleByMonthInterface[] {
@@ -56,7 +55,7 @@ export class ProductionService {
         return true;
       }
     });
-    console.log(salesList, 'filter sale list');
+    // console.log(salesList, 'filter sale list');
      return {
        sales: salesList,
        totalAmount: total

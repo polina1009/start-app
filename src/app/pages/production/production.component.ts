@@ -16,7 +16,7 @@ export class ProductionComponent implements OnInit {
   constructor(private prodService: ProductionService) {
   }
   ngOnInit() {
-    this.prodService.currentMessage.subscribe(message => this.message = message);
+    this.prodService.notificator.subscribe(message => this.message = message);
   }
 
 }
