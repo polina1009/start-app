@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { sales } from './mock-sales';
 import {SaleByMonthInterface, SaleInterface, SumSaleInterface} from './sale.interface';
 import { SaleClass } from './sale.class';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+// import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import {Subject} from 'rxjs/Subject';
 
 
 @Injectable()
@@ -13,10 +14,8 @@ export class ProductionService {
 
   private filteredSalesList: SaleInterface[];
 
-  private _notificator = new BehaviorSubject<string>('interval picker changed!');
+  private _notificator = new Subject<any>();
   notificator = this._notificator.asObservable();
-
-  // private creationDatetime;
 
   private static getPreparedSales(salesList): SaleInterface[] { // real return type description
     return salesList.map((sale): SaleInterface => new SaleClass(sale));
@@ -26,14 +25,11 @@ export class ProductionService {
     this.salesList = []; // Setting default state
     this.filteredSalesList = [];
     this.setSales();
-
-    // to distinct services (if several exists) from each other
-    // this.creationDatetime = new Date().getTime();
   }
 
-  changeMessage(message: string) {
-    // console.log(`creation time = ${this.creationDatetime}`);
-    this._notificator.next(message);
+  changeSales(from, to) {
+    this.filterSales(from, to);
+    this._notificator.next();
   }
 
   // getSalesByMonth(): SaleByMonthInterface[] {
@@ -55,7 +51,6 @@ export class ProductionService {
         return true;
       }
     });
-    // console.log(salesList, 'filter sale list');
      return {
        sales: salesList,
        totalAmount: total
@@ -69,6 +64,5 @@ export class ProductionService {
 
   public filterSales(from: number, to: number): void {
     this.filteredSalesList = this.salesList.filter((interval) => interval.date <= to && interval.date >= from);
-    // console.log(this.filteredSalesList, 'filter-interval');
   }
 }

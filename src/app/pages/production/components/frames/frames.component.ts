@@ -13,13 +13,10 @@ export class FramesComponent implements OnInit {
   public type: SaleTypeInterface;
   public amount: number;
 
-  message: string;
-
   public sales: SumSaleInterface;
 
   constructor(private prodService: ProductionService) {
     this.amount = 0;
-    // this.sales = [];
   }
 
   public setClick(name: string) {
@@ -28,20 +25,15 @@ export class FramesComponent implements OnInit {
 
   ngOnInit() {
     this.getSalesAndRender();
-    this.prodService.notificator.subscribe(message => {
-      // this.message = message;
-      this.getSalesAndRender();
+    this.prodService.notificator.subscribe(sale => {
+      sale = this.getSalesAndRender();
     });
-  }
-
-  newMessage() {
-    // this.prodService.changeMessage('Hello!!!!');
   }
 
   private getSalesAndRender(): void {
     this.sales = this.prodService.getSalesByType(this.type.id);
     this.amount = this.sales.totalAmount;
-    // console.log('*******', this.sales);
+    console.log('*******', this.sales);
   }
 
 }
